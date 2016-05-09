@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class MessagePost here.
  * 
@@ -8,15 +8,22 @@
 public class MessagePost
 {
     // instance variables - replace the example below with your own
-    private int x;
-
+    private String username;
+    private String message;
+    private long timestamp;
+    private int likes;
+    private ArrayList<String> comments; 
     /**
      * Constructor for objects of class MessagePost
      */
-    public MessagePost()
+    public MessagePost(String author, String text)
     {
         // initialise instance variables
-        x = 0;
+        username = author;
+        message = text;
+        likes = 0;
+        comments = new ArrayList<>();
+        System.currentTimeMillis();
     }
 
     /**
@@ -25,9 +32,44 @@ public class MessagePost
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public int sampleMethod(int y)
+    public void like()
     {
-        // put your code here
-        return x + y;
+      likes++;
+    }
+    
+    public void unlike()
+    {
+        if (likes == 0)
+        {
+            System.out.println("No puedes quitar algo que no tienes");
+        }
+        else{
+            likes--;
+        }
+    }
+    
+    public void addComment(String text)
+    {
+        comments.add(text);
+    }
+    
+    public String getText()
+    {
+        return message;
+    }
+    
+    public long getTimeStamp()
+    {
+        return System.currentTimeMillis();
+    }
+    
+    public void display()
+    {
+        System.out.println("---------------------------------------------");
+        System.out.println("Author: " + username);
+        System.out.println("Text: " + message);
+        System.out.println("Likes: " + likes);
+        System.out.println("Time posted: " + timestamp);
+        System.out.println("---------------------------------------------");
     }
 }
